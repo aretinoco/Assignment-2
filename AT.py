@@ -55,7 +55,7 @@ while inp != 5:
             text[3] = t
             users.append(text)
             # print(x)
-        print(users)
+        # print(users)
         
         #process post data
         texts = post.split("\n")
@@ -63,7 +63,7 @@ while inp != 5:
             text = x.split(";")
             posts.append(text)
             # print(x)
-        print(posts)
+        # print(posts)
         
         # print(users[0][[0, 1, 3]]
         
@@ -109,6 +109,8 @@ while inp != 5:
             if y[0].lower() == user:
                 friends = y[3]
         
+        print("")
+        
         for x in posts:
             b = 0
             if x[1].lower() != user:
@@ -126,8 +128,8 @@ while inp != 5:
         loc = input("Enter state location:\n").upper()
         
         for x in users:
-            if x[3].upper() == loc:
-                print(x[2])
+            if x[2].upper() == loc:
+                print("\n", x[1])
         
         
     elif inp != 5:
