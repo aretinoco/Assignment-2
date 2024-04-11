@@ -1,15 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 19 21:21:04 2024
-
-@author: areti
-
-"""
-
-# C:\Users\areti\Downloads\Assignment-2\user-info.txt
-
-# C:\Users\areti\Downloads\Assignment-2\post-info.txt
-
 #input variable
 inp = 0
 
@@ -29,7 +17,7 @@ while inp != 5:
     #get user input
     inp = int(input("Enter your choice as a number:\n"))
     
-    #aacct upon selected choice
+    #act upon selected choice
     if inp == 1:
         #load data
         
@@ -45,35 +33,22 @@ while inp != 5:
         #process user data
         texts = user.split("\n") 
         for x in texts:
-            # t = []
             text = x.split(";")
             t = text[3][1:-1].lower().split(",")
-            # print(t)
-            # for y in range(text[3]):
-            #     print(text[3][y])
-            #     t.append(text[3][y].lower()) 
             text[3] = t
             users.append(text)
-            # print(x)
-        # print(users)
         
         #process post data
         texts = post.split("\n")
         for x in texts:
             text = x.split(";")
             posts.append(text)
-            # print(x)
-        # print(posts)
-        
-        # print(users[0][[0, 1, 3]]
-        
-        # print(users['goldenlover1'])
-        # print(posts['post3298'])
         
         
     elif inp == 2:
         #check whether an user can see a post or not
         
+        #variable to check track if user can view post
         b = -1
         
         #get username for user trying to access the post and post ID
@@ -88,10 +63,9 @@ while inp != 5:
                         for y in users:
                             if y[0].lower() == user:
                                 if x[1].lower() not in y[3]:
-                                    # print("Access Denied")
-                                    # break
                                     b = 1
-                # sd
+               
+                # if b was changed, the user cannot view the post; else they can view post
                 if b == 1:
                     print("\nAccess Denied.\n")
                 else:
@@ -104,20 +78,31 @@ while inp != 5:
         
         #get username for user
         user = input("Enter username:\n").lower()
-        
+
+        #get friends of user
         for y in users:
             if y[0].lower() == user:
                 friends = y[3]
-        
+
+        #new line for formatting
         print("")
-        
+
+        #go through each post
         for x in posts:
             b = 0
+            
+            #check if it wasnt written by the searched user
             if x[1].lower() != user:
+
+                #check if post is public
                 if x[2].lower() != "public":
+
+                    #check if post publisher is a friend of searched user
                     if x[1].lower() not in friends:
-                        print(x[1], friends)
+                        #change variable to another value
                         b = 1
+
+            #if variable remained unchanged, print post ID
             if b == 0:
                 print(x[0])
         
@@ -126,12 +111,14 @@ while inp != 5:
         
         #get location
         loc = input("Enter state location:\n").upper()
-        
+
+        #go through all users
         for x in users:
+            #print all users matching the location
             if x[2].upper() == loc:
                 print("\n", x[1])
         
-        
+    #print error message if user inputs an int that isn't 1-4    
     elif inp != 5:
         print("Option selected is nonexistent. PLease try again.")
     
